@@ -38,13 +38,15 @@ export const Navbar = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center">
           {/* <div className="font-bold text-2xl text-blue-700">Metal Austral</div> */}
-            <Image 
-              src="/images/logo.svg" 
-              alt="Metal Austral" 
-              width={220}
-              height={200}
-              className="object-contain" 
-            />
+          <Image
+            src="/images/logo.svg"
+            alt="Metal Austral"
+            width={220}
+            height={50}
+            className={`object-contain transition-all duration-300 ${
+              isScrolled ? '' : 'invert'
+            }`}
+          />
           </Link>
 
           {/* Desktop Navigation */}

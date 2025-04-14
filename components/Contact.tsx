@@ -168,8 +168,8 @@ export const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    />
+                      className="mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-base py-2 px-4"
+                      />
                   </div>
 
                   <div>
@@ -183,7 +183,7 @@ export const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      className="mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-base py-2 px-4"
                     />
                   </div>
 
@@ -198,7 +198,7 @@ export const Contact = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      className="mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-base py-2 px-4"
                     />
                   </div>
 
@@ -212,7 +212,7 @@ export const Contact = () => {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      className="mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-base py-2 px-4"
                     />
                   </div>
 
@@ -225,7 +225,7 @@ export const Contact = () => {
                       name="projectType"
                       value={formData.projectType}
                       onChange={handleChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      className="mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-base py-2 px-4"
                     >
                       <option value="industrial">Galpón Industrial</option>
                       <option value="commercial">Edificio Comercial</option>
@@ -245,7 +245,7 @@ export const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      className="mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-base py-2 px-4"
                       placeholder="Describe brevemente tu proyecto y necesidades"
                     />
                   </div>

@@ -11,6 +11,7 @@ interface Service {
   description: string;
   icon: string;
   features: string[];
+  image?: string;
 }
 
 export const Services = () => {
@@ -25,7 +26,8 @@ export const Services = () => {
         'Techos y cerramientos personalizados',
         'Diseño adaptado a tus necesidades',
         'Fundaciones sismorresistentes'
-      ]
+      ],
+      image: '/images/proyecto_3.jpeg'
     },
     {
       id: 2,
@@ -37,7 +39,8 @@ export const Services = () => {
         'Trámites y permisos municipales',
         'Instalaciones eléctricas y sanitarias',
         'Cumplimiento de plazos y presupuesto'
-      ]
+      ],
+      image: '/images/galpones-industriales.jpeg'
     },
     {
       id: 3,
@@ -49,7 +52,8 @@ export const Services = () => {
         'Ampliaciones y modificaciones',
         'Modernización de instalaciones',
         'Inspección y mantenimiento preventivo'
-      ]
+      ],
+      image: '/images/proyecto_4_2.jpeg'
     }
   ];
 
@@ -130,11 +134,14 @@ export const Services = () => {
                 ))}
               </ul>
             </div>
-            <div className="bg-gray-200 h-64 rounded-lg relative">
-              {/* Aquí puedes colocar una imagen relacionada con el servicio */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-gray-500 text-center">Imagen del servicio</p>
-              </div>
+            <div className="relative w-full h-64 rounded-lg overflow-hidden">
+              <Image
+                src={services.find(s => s.id === activeService)?.image || ''}
+                alt={services.find(s => s.id === activeService)?.title || ''}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
+              />
             </div>
           </div>
         </div>

@@ -25,7 +25,6 @@ export const Navbar = () => {
     { name: 'Inicio', href: '#' },
     { name: 'Servicios', href: '#servicios' },
     { name: 'Proyectos', href: '#proyectos' },
-    { name: 'Sobre Nosotros', href: '#sobre-nosotros' },
   ];
 
   return (
@@ -37,15 +36,15 @@ export const Navbar = () => {
       <Container>
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="relative h-10 w-40">
-            <div className="font-bold text-2xl text-blue-700">Metal Austral</div>
-            {/* Cuando tengas el logo, usa esto: 
+          <Link href="/" className="flex items-center">
+          {/* <div className="font-bold text-2xl text-blue-700">Metal Austral</div> */}
             <Image 
               src="/images/logo.svg" 
               alt="Metal Austral" 
-              fill
+              width={220}
+              height={200}
               className="object-contain" 
-            /> */}
+            />
           </Link>
 
           {/* Desktop Navigation */}

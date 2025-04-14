@@ -33,7 +33,7 @@ export const Projects = () => {
       title: 'Centro Comercial Las Acacias',
       description: 'Proyecto llave en mano para centro comercial con estructura metálica.',
       category: 'comercial',
-      image: 'https://images.unsplash.com/photo-1565008576549-57cf2b6e9a41?q=80&w=2029',
+      image: '/images/proyecto11.jpeg',
       location: 'Osorno, Chile',
       year: 2022
     },
@@ -60,7 +60,7 @@ export const Projects = () => {
       title: 'Bodega Agrícola San Clemente',
       description: 'Galpón agrícola para almacenamiento y procesamiento de productos.',
       category: 'logistico',
-      image: 'https://images.unsplash.com/photo-1513828646384-12fa9bcf5536?q=80&w=2070',
+      image: '/images/proyecto_4_1.jpeg',
       location: 'Temuco, Chile',
       year: 2022
     },

@@ -14,7 +14,7 @@ export const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -25,7 +25,7 @@ export const Navbar = () => {
     if (element) {
       const navbarHeight = isScrolled ? 80 : 100; // Altura aproximada del navbar
       const targetPosition = element.offsetTop - navbarHeight;
-      
+
       window.scrollTo({
         top: targetPosition,
         behavior: 'smooth'
@@ -37,17 +37,17 @@ export const Navbar = () => {
 
   const navLinks = [
     { name: 'Inicio', href: '#', target: 'hero' },
+    { name: 'Nosotros', href: '#nosotros', target: 'nosotros' },
     { name: 'Servicios', href: '#servicios', target: 'servicios' },
     { name: 'Proyectos', href: '#proyectos', target: 'proyectos' },
   ];
 
   return (
-    <header 
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ease-out ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100 py-3' 
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ease-out ${isScrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100 py-3'
           : 'bg-transparent py-6'
-      }`}
+        }`}
     >
       <Container>
         <nav className="flex items-center justify-between">
@@ -58,9 +58,8 @@ export const Navbar = () => {
               alt="Metal Austral"
               width={200}
               height={45}
-              className={`object-contain transition-all duration-500 ease-out group-hover:scale-105 ${
-                isScrolled ? '' : 'invert'
-              }`}
+              className={`object-contain transition-all duration-500 ease-out group-hover:scale-105 ${isScrolled ? '' : 'invert'
+                }`}
             />
           </Link>
 
@@ -76,40 +75,35 @@ export const Navbar = () => {
                     smoothScrollTo(link.target);
                   }
                 }}
-                className={`relative text-sm font-medium transition-all duration-300 ease-out hover:scale-105 group cursor-pointer ${
-                  isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
-                }`}
+                className={`relative text-sm font-medium transition-all duration-300 ease-out hover:scale-105 group cursor-pointer ${isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
+                  }`}
               >
                 {link.name}
-                <span className={`absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 ease-out group-hover:w-full ${
-                  isScrolled ? 'bg-blue-600' : 'bg-blue-200'
-                }`}></span>
+                <span className={`absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 ease-out group-hover:w-full ${isScrolled ? 'bg-blue-600' : 'bg-blue-200'
+                  }`}></span>
               </button>
             ))}
             <button
               onClick={() => smoothScrollTo('contacto')}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-lg cursor-pointer ${
-                isScrolled 
-                  ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 shadow-md' 
+              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-lg cursor-pointer ${isScrolled
+                  ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 shadow-md'
                   : 'bg-white/90 text-blue-700 hover:bg-white hover:shadow-xl backdrop-blur-sm'
-              }`}
+                }`}
             >
               Contáctanos
             </button>
           </div>
 
           {/* Mobile Navigation Toggle */}
-          <button 
-            className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ease-out hover:scale-110 ${
-              isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/10'
-            }`}
+          <button
+            className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ease-out hover:scale-110 ${isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/10'
+              }`}
             onClick={toggleMenu}
             aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
           >
             <svg
-              className={`w-6 h-6 transition-all duration-300 ease-out ${
-                isScrolled ? 'text-gray-700' : 'text-white'
-              } ${isMenuOpen ? 'rotate-180' : ''}`}
+              className={`w-6 h-6 transition-all duration-300 ease-out ${isScrolled ? 'text-gray-700' : 'text-white'
+                } ${isMenuOpen ? 'rotate-180' : ''}`}
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -127,9 +121,8 @@ export const Navbar = () => {
         </nav>
 
         {/* Mobile Navigation Menu */}
-        <div className={`md:hidden overflow-hidden transition-all duration-500 ease-out ${
-          isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
-        }`}>
+        <div className={`md:hidden overflow-hidden transition-all duration-500 ease-out ${isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+          }`}>
           <div className="bg-white/95 backdrop-blur-md mt-4 rounded-2xl p-6 shadow-xl border border-gray-100">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link, index) => (
@@ -143,9 +136,8 @@ export const Navbar = () => {
                     }
                     toggleMenu();
                   }}
-                  className={`text-left text-gray-700 hover:text-blue-600 transition-all duration-300 ease-out transform hover:translate-x-2 hover:font-medium cursor-pointer ${
-                    isMenuOpen ? 'animate-slideInUp' : ''
-                  }`}
+                  className={`text-left text-gray-700 hover:text-blue-600 transition-all duration-300 ease-out transform hover:translate-x-2 hover:font-medium cursor-pointer ${isMenuOpen ? 'animate-slideInUp' : ''
+                    }`}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {link.name}
@@ -156,9 +148,8 @@ export const Navbar = () => {
                   smoothScrollTo('contacto');
                   toggleMenu();
                 }}
-                className={`px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 ease-out transform hover:scale-105 shadow-md hover:shadow-lg cursor-pointer ${
-                  isMenuOpen ? 'animate-slideInUp' : ''
-                }`}
+                className={`px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 ease-out transform hover:scale-105 shadow-md hover:shadow-lg cursor-pointer ${isMenuOpen ? 'animate-slideInUp' : ''
+                  }`}
                 style={{ animationDelay: `${navLinks.length * 100}ms` }}
               >
                 Contáctanos

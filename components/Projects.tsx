@@ -1,8 +1,8 @@
-// components/Projects.tsx
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
+import { motion, useInView } from 'framer-motion';
 import { Container } from './ui/Container';
 
 type ProjectCategory = 'todos' | 'industrial' | 'comercial' | 'logistico';
@@ -11,297 +11,258 @@ interface Project {
   id: number;
   title: string;
   description: string;
+  longDescription: string;
   category: ProjectCategory;
   image: string;
   location: string;
   year: number;
-  area?: string;
-  client?: string;
+  area: string;
+  client: string;
+  highlights: string[];
 }
 
 export const Projects = () => {
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>('todos');
-  const [isVisible, setIsVisible] = useState(false);
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
   const projects: Project[] = [
     {
       id: 1,
-      title: 'Planta de Producción Aceros del Sur',
-      description: 'Construcción de planta industrial de 5000m² para procesamiento de acero con tecnología de punta.',
+      title: 'Planta Industrial Aceros del Sur',
+      description: 'Ingeniería y construcción de planta de procesamiento pesado de 5.000m².',
+      longDescription: 'Un proyecto de alta complejidad técnica que incluyó el montaje de estructuras para puentes grúa de 20 toneladas y fundaciones especiales para maquinaria de vibración constante.',
       category: 'industrial',
       image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070',
-      location: 'Puerto Montt, Chile',
+      location: 'Puerto Montt, Región de Los Lagos',
       year: 2023,
       area: '5,000 m²',
-      client: 'Aceros del Sur'
+      client: 'Aceros del Sur S.A.',
+      highlights: ['Estructura Heavy Duty', 'Montaje en Tiempo Récord', 'Iluminación Natural 30%']
     },
     {
       id: 2,
       title: 'Centro Comercial Las Acacias',
-      description: 'Proyecto llave en mano para centro comercial con estructura metálica y diseño arquitectónico moderno.',
+      description: 'Diseño arquitectónico y estructural para complejo comercial de retail.',
+      longDescription: 'Desarrollamos una estructura mixta de acero y hormigón que permitió grandes luces libres para los locales comerciales, optimizando el flujo de clientes y la flexibilidad del espacio.',
       category: 'comercial',
       image: '/images/proyecto11.jpeg',
-      location: 'Osorno, Chile',
+      location: 'Osorno, Región de Los Lagos',
       year: 2022,
       area: '8,500 m²',
-      client: 'Inmobiliaria Las Acacias'
+      client: 'Inmobiliaria Las Acacias',
+      highlights: ['Cubiertas PV4', 'Grandes Luces Libres', 'Eficiencia Energética']
     },
     {
       id: 3,
       title: 'Centro de Distribución LogisFast',
-      description: 'Galpón logístico de 8000m² con sistema automatizado de almacenamiento y control de inventario.',
+      description: 'Nave logística automatizada con altos estándares de almacenamiento.',
+      longDescription: 'Implementación de galpón logístico con 14 metros de altura libre, diseñado específicamente para sistemas de racks automatizados y alto flujo de transportes pesados.',
       category: 'logistico',
       image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070',
-      location: 'Concepción, Chile',
+      location: 'Concepción, Región del Biobío',
       year: 2023,
       area: '8,000 m²',
-      client: 'LogisFast Chile'
+      client: 'LogisFast Chile SpA',
+      highlights: ['14m Altura Libre', 'Pisos Super Planos', 'Andenes Automatizados']
     },
     {
       id: 4,
-      title: 'Fábrica de Lácteos Valle Fresco',
-      description: 'Construcción de planta de procesamiento de lácteos con normativa alimentaria internacional.',
+      title: 'Planta Valle Fresco',
+      description: 'Construcción bajo norma sanitaria para procesamiento de lácteos.',
+      longDescription: 'Espacio diseñado con materiales asépticos y sistemas de drenaje especializados, garantizando el cumplimiento de todas las normativas de seguridad alimentaria internacional.',
       category: 'industrial',
       image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2069',
-      location: 'Valdivia, Chile',
+      location: 'Valdivia, Región de Los Ríos',
       year: 2021,
       area: '3,200 m²',
-      client: 'Valle Fresco Ltda.'
+      client: 'Valle Fresco Ltda.',
+      highlights: ['Acero Inoxidable', 'Climatización Controlada', 'Revestimientos Grado FDA']
     },
     {
       id: 5,
-      title: 'Bodega Agrícola San Clemente',
-      description: 'Galpón agrícola para almacenamiento y procesamiento de productos con control de temperatura.',
+      title: 'Multibodegas San Clemente',
+      description: 'Complejo de bodegaje modular altamente escalable.',
+      longDescription: 'Serie de galpones modulares interconectados que permiten a la empresa crecer de forma rápida según la demanda estacional del sector agrícola.',
       category: 'logistico',
       image: '/images/proyecto_4_1.jpeg',
-      location: 'Temuco, Chile',
+      location: 'Temuco, Región de la Araucanía',
       year: 2022,
       area: '6,800 m²',
-      client: 'Agrícola San Clemente'
+      client: 'Agrícola San Clemente',
+      highlights: ['Sistema Modular', 'Ventilación Forzada', 'Bajo Mantenimiento']
     },
     {
       id: 6,
-      title: 'Showroom AutoMotriz Pacific',
-      description: 'Estructura metálica con diseño arquitectónico para exposición de vehículos de lujo.',
+      title: 'Showroom Automotriz Pacific',
+      description: 'Estructura metálica vista con amplios ventanales panorámicos.',
+      longDescription: 'Un desafío estético donde la estructura de acero se convierte en parte integral de la arquitectura del showroom, utilizando acabados de pintura industrial premium.',
       category: 'comercial',
       image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070',
-      location: 'Puerto Varas, Chile',
+      location: 'Puerto Varas, Región de Los Lagos',
       year: 2023,
       area: '2,400 m²',
-      client: 'AutoMotriz Pacific'
+      client: 'AutoMotriz Pacific',
+      highlights: ['Acero a la Vista', 'Ventanales Panorámicos', 'Diseño Minimalista']
     }
   ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const filteredProjects = activeCategory === 'todos' 
-    ? projects 
+  const filteredProjects = activeCategory === 'todos'
+    ? projects
     : projects.filter(project => project.category === activeCategory);
 
   const categories = [
-    { id: 'todos', name: 'Todos los proyectos', icon: '🏗️', count: projects.length },
-    { id: 'industrial', name: 'Industrial', icon: '🏭', count: projects.filter(p => p.category === 'industrial').length },
-    { id: 'comercial', name: 'Comercial', icon: '🏢', count: projects.filter(p => p.category === 'comercial').length },
-    { id: 'logistico', name: 'Logístico', icon: '📦', count: projects.filter(p => p.category === 'logistico').length }
+    { id: 'todos', name: 'Todos', icon: '🏗️' },
+    { id: 'industrial', name: 'Industrial', icon: '🏭' },
+    { id: 'comercial', name: 'Comercial', icon: '🏢' },
+    { id: 'logistico', name: 'Logístico', icon: '📦' }
   ];
 
-  const getCategoryColor = (categoryId: string) => {
-    const colors = {
-      'todos': 'from-blue-500 to-cyan-500',
-      'industrial': 'from-orange-500 to-red-500',
-      'comercial': 'from-green-500 to-emerald-500',
-      'logistico': 'from-purple-500 to-pink-500'
-    };
-    return colors[categoryId as keyof typeof colors] || colors.todos;
-  };
-
   return (
-    <section ref={sectionRef} id="proyectos" className="py-20 bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 relative overflow-hidden">
-      {/* Elementos decorativos de fondo */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-40 right-20 w-96 h-96 bg-blue-300 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-40 left-20 w-80 h-80 bg-purple-300 rounded-full blur-3xl"></div>
-      </div>
-
-      <Container className="relative z-10">
-        <div className={`text-center mb-16 transition-all duration-1000 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
-          <div className="mb-4">
-            <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 text-sm font-medium">
-              🚀 Nuestro portafolio
+    <section ref={sectionRef} id="proyectos" className="py-32 bg-white relative overflow-hidden">
+      <Container>
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 gap-8">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="max-w-2xl"
+          >
+            <span className="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-widest text-blue-600 uppercase bg-blue-50 rounded-full">
+              Portafolio de Obras
             </span>
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-            Proyectos Destacados
-          </h2>
-          <p className="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
-            Conoce algunos de nuestros proyectos más destacados y cómo hemos 
-            ayudado a diferentes empresas a expandir sus operaciones con soluciones innovadoras.
-          </p>
-        </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-none">
+              Nuestros <span className="text-blue-600">Hitos </span>
+              Estructurales
+            </h2>
+          </motion.div>
 
-        {/* Filtros de categorías */}
-        <div className={`flex flex-wrap justify-center gap-3 mb-12 transition-all duration-1000 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-        }`} style={{ transitionDelay: '200ms' }}>
-          {categories.map((category, index) => (
-            <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id as ProjectCategory)}
-              className={`group relative px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 ease-out transform hover:scale-105 ${
-                activeCategory === category.id
-                  ? `bg-gradient-to-r ${getCategoryColor(category.id)} text-white shadow-lg`
-                  : 'bg-white text-gray-700 hover:text-gray-900 hover:shadow-md border border-gray-200'
-              }`}
-              style={{ 
-                transitionDelay: `${index * 100}ms`,
-                animationDelay: `${200 + index * 100}ms`
-              }}
-            >
-              <div className="flex items-center space-x-2">
-                <span className="text-base">{category.icon}</span>
+          {/* Filtros de categorías */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex flex-wrap gap-2"
+          >
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id as ProjectCategory)}
+                className={`px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center space-x-2 ${activeCategory === category.id
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-200'
+                  : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
+                  }`}
+              >
+                <span>{category.icon}</span>
                 <span>{category.name}</span>
-                <span className={`inline-flex items-center justify-center w-5 h-5 text-xs rounded-full ${
-                  activeCategory === category.id 
-                    ? 'bg-white/20 text-white' 
-                    : 'bg-gray-100 text-gray-600'
-                }`}>
-                  {category.count}
-                </span>
-              </div>
-              
-              {/* Efecto de brillo en hover */}
-              {activeCategory !== category.id && (
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -skew-x-12"></div>
-              )}
-            </button>
-          ))}
+              </button>
+            ))}
+          </motion.div>
         </div>
 
         {/* Grid de proyectos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {filteredProjects.map((project, index) => (
-            <div 
-              key={project.id} 
-              className={`group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ease-out transform hover:scale-105 hover:-translate-y-2 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-              style={{ transitionDelay: `${400 + index * 150}ms` }}
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
+            <motion.div
+              layout
+              key={project.id}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group"
             >
-              <div className="relative h-64 overflow-hidden">
-                <div 
-                  className="w-full h-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
-                  style={{ backgroundImage: `url(${project.image})` }}
+              <div className="relative h-[450px] rounded-[2.5rem] overflow-hidden shadow-xl shadow-slate-200/50 mb-6">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                
-                {/* Overlay con gradiente */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                {/* Badge de año */}
-                <div className="absolute top-4 right-4">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/90 backdrop-blur-sm text-gray-800">
-                    ✨ {project.year}
-                  </span>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent transition-opacity duration-300 group-hover:opacity-100" />
 
-                {/* Información adicional en hover */}
-                <div className={`absolute bottom-4 left-4 right-4 transform transition-all duration-300 ease-out ${
-                  hoveredProject === project.id ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-                }`}>
-                  <div className="bg-white/95 backdrop-blur-sm rounded-xl p-3">
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="font-medium text-gray-700">📐 {project.area}</span>
-                      <span className="text-gray-600">{project.client}</span>
+                {/* Content Overlay */}
+                <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                  <div className="mb-4 flex flex-wrap gap-2">
+                    {project.highlights.map((h, i) => (
+                      <span key={i} className="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 text-[10px] text-white font-bold uppercase tracking-widest rounded-full">
+                        {h}
+                      </span>
+                    ))}
+                  </div>
+
+                  <h3 className="text-2xl font-black text-white mb-2 leading-tight">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-slate-300 text-sm font-light line-clamp-2 mb-6 group-hover:line-clamp-none transition-all duration-500">
+                    {project.longDescription}
+                  </p>
+
+                  <div className="flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    <div className="text-white">
+                      <p className="text-[10px] text-blue-400 font-bold uppercase tracking-widest mb-1">Cliente</p>
+                      <p className="text-xs font-bold">{project.client}</p>
+                    </div>
+                    <div className="text-right text-white">
+                      <p className="text-[10px] text-blue-400 font-bold uppercase tracking-widest mb-1">Superficie</p>
+                      <p className="text-xs font-bold">{project.area}</p>
                     </div>
                   </div>
                 </div>
-              </div>
-              
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-bold text-gray-900 leading-tight group-hover:text-blue-600 transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                </div>
-                
-                <p className="text-gray-600 mb-4 leading-relaxed line-clamp-3">
-                  {project.description}
-                </p>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center text-gray-500 text-sm">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4 mr-1 text-blue-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                    <span className="font-medium">{project.location}</span>
-                  </div>
-                  
-                  <button className="flex items-center text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors duration-300 group/btn">
-                    <span>Ver más</span>
-                    <svg className="w-4 h-4 ml-1 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
+
+                {/* Badge Category */}
+                <div className="absolute top-6 left-6">
+                  <span className="px-4 py-2 bg-white text-slate-900 text-[10px] font-black uppercase tracking-[0.2em] rounded-xl shadow-lg">
+                    {project.category}
+                  </span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className={`text-center mt-16 transition-all duration-1000 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`} style={{ transitionDelay: '800ms' }}>
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              ¿Tienes un proyecto en mente?
-            </h3>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Conversemos sobre tu próximo proyecto y cómo podemos ayudarte a hacerlo realidad
-              con la calidad y profesionalismo que nos caracteriza.
-            </p>
-            <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-2xl transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25">
-              Iniciar mi proyecto
-            </button>
+        {/* CTA Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mt-24 p-12 md:p-20 rounded-[3rem] bg-gradient-to-br from-blue-700 to-indigo-900 text-white relative overflow-hidden"
+        >
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h3 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                ¿Su próximo proyecto <br /> industrial comienza aquí?
+              </h3>
+              <p className="text-xl text-blue-100 font-light mb-10 max-w-lg leading-relaxed">
+                Únase a las más de 500 empresas que han confiado su infraestructura en nuestras manos expertas.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <button className="px-10 py-5 bg-white text-blue-700 font-bold rounded-2xl hover:bg-blue-50 transition-all shadow-xl shadow-blue-900/20">
+                  Iniciar Cotización
+                </button>
+                <button className="px-10 py-5 bg-blue-600/30 backdrop-blur-md border border-white/20 text-white font-bold rounded-2xl hover:bg-white/10 transition-all">
+                  Descargar Brochure
+                </button>
+              </div>
+            </div>
+
+            <div className="hidden lg:grid grid-cols-2 gap-6">
+              <div className="p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl">
+                <p className="text-4xl font-black text-blue-400 mb-2">100%</p>
+                <p className="text-sm font-medium text-blue-100">Responsabilidad Civil</p>
+              </div>
+              <div className="p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl mt-8">
+                <p className="text-4xl font-black text-blue-400 mb-2">ISO</p>
+                <p className="text-sm font-medium text-blue-100">Estándares de Calidad</p>
+              </div>
+            </div>
           </div>
-        </div>
+
+          {/* Decorative patterns */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-[100px] -mr-48 -mt-48" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-400/10 rounded-full blur-[80px] -ml-32 -mb-32" />
+        </motion.div>
       </Container>
     </section>
   );

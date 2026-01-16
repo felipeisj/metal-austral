@@ -61,7 +61,7 @@ export const About = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
             <span className="inline-block px-4 py-1 text-sm font-bold tracking-widest text-blue-600 uppercase bg-blue-50 rounded-full mb-6">
-              Sobre Metal Austral
+              Sobre Galpón Austral
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 leading-tight">
               Ingeniería en Acero que <span className="text-blue-600">Impulsa</span> su Industria
@@ -69,7 +69,7 @@ export const About = () => {
             <div className="space-y-6 text-lg text-slate-600 font-light leading-relaxed">
               <p>
                 Fundada con la visión de transformar el panorama industrial del sur de Chile,
-                <span className="font-bold text-slate-900"> Metal Austral</span> se ha consolidado como el referente en soluciones metálicas de alta complejidad.
+                <span className="font-bold text-slate-900"> Galpón Austral</span> se ha consolidado como el referente en soluciones metálicas de alta complejidad.
               </p>
               <p>
                 No solo vendemos estructuras; entregamos confianza. Cada perno, cada viga y cada plano pasa por un riguroso control de calidad que supera los estándares nacionales. Nuestra misión es que su inversión sea eterna.

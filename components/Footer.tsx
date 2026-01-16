@@ -49,7 +49,7 @@ export const Footer = () => {
           <div className="lg:col-span-5">
             <Link href="/" className="inline-block mb-8">
               <span className="text-3xl font-black tracking-tighter text-white">
-                METAL<span className="text-blue-500">AUSTRAL</span>
+                GALPÓN<span className="text-blue-500">AUSTRAL</span>
               </span>
             </Link>
             <p className="text-slate-400 text-lg font-light leading-relaxed mb-10 max-w-md">
@@ -123,7 +123,7 @@ export const Footer = () => {
 
         <div className="pt-12 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-slate-500 text-sm">
-            &copy; {currentYear} Metal Austral SpA. Orgullosamente construido en el Sur.
+            &copy; {currentYear} Galpón Austral SpA. Orgullosamente construido en el Sur.
           </p>
           <div className="flex space-x-8">
             <Link href="#" className="text-slate-500 hover:text-white text-xs uppercase tracking-widest font-bold">Privacidad</Link>

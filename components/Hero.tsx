@@ -102,7 +102,7 @@ export const Hero = () => {
             className="text-xl md:text-2xl mb-10 text-gray-200 leading-relaxed max-w-2xl font-light"
           >
             Desde el diseño conceptual hasta la entrega final. En
-            <span className="text-white font-bold"> Metal Austral</span>,
+            <span className="text-white font-bold"> Galpón Austral</span>,
             convertimos visiones industriales en realidades estructurales con
             <span className="text-blue-300"> precisión quirúrgica</span> y eficiencia.
           </motion.p>

@@ -45,8 +45,8 @@ export const Navbar = () => {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-500 ease-out ${isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100 py-3'
-          : 'bg-transparent py-6'
+        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100 py-3'
+        : 'bg-transparent py-6'
         }`}
     >
       <Container>
@@ -55,7 +55,7 @@ export const Navbar = () => {
           <Link href="/" className="flex items-center group">
             <Image
               src="/images/logo.svg"
-              alt="Metal Austral"
+              alt="Galpón Austral"
               width={200}
               height={45}
               className={`object-contain transition-all duration-500 ease-out group-hover:scale-105 ${isScrolled ? '' : 'invert'
@@ -86,8 +86,8 @@ export const Navbar = () => {
             <button
               onClick={() => smoothScrollTo('contacto')}
               className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-lg cursor-pointer ${isScrolled
-                  ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 shadow-md'
-                  : 'bg-white/90 text-blue-700 hover:bg-white hover:shadow-xl backdrop-blur-sm'
+                ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 shadow-md'
+                : 'bg-white/90 text-blue-700 hover:bg-white hover:shadow-xl backdrop-blur-sm'
                 }`}
             >
               Contáctanos

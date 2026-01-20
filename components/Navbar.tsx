@@ -3,8 +3,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Container } from './ui/Container';
+import { Logo } from './ui/Logo';
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,7 +23,7 @@ export const Navbar = () => {
   const smoothScrollTo = (elementId: string) => {
     const element = document.getElementById(elementId);
     if (element) {
-      const navbarHeight = isScrolled ? 80 : 100; // Altura aproximada del navbar
+      const navbarHeight = isScrolled ? 60 : 80; // Altura reducida
       const targetPosition = element.offsetTop - navbarHeight;
 
       window.scrollTo({
@@ -45,23 +45,18 @@ export const Navbar = () => {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-500 ease-out ${isScrolled
-        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100 py-3'
-        : 'bg-transparent py-6'
+        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100 py-2'
+        : 'bg-transparent py-4'
         }`}
     >
       <Container>
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center group">
-            <Image
-              src="/images/logo.svg"
-              alt="Galpón Austral"
-              width={200}
-              height={45}
-              className={`object-contain transition-all duration-500 ease-out group-hover:scale-105 ${isScrolled ? '' : 'invert'
-                }`}
-            />
-          </Link>
+          <div className="flex items-center min-w-max">
+            <Link href="/" className="flex items-center group">
+              <Logo isScrolled={isScrolled} />
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

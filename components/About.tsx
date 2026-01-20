@@ -12,7 +12,7 @@ export const About = () => {
   const stats = [
     { label: 'Años de Experiencia', value: '15+' },
     { label: 'Proyectos Entregados', value: '500+' },
-    { label: 'Regiones Cubiertas', value: '12' },
+    { label: 'Regiones Cubiertas', value: '4' },
     { label: 'Expertos Técnicos', value: '45' },
   ];
 
@@ -42,7 +42,7 @@ export const About = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute -bottom-8 -right-8 z-20 bg-blue-600 text-white p-8 rounded-3xl shadow-xl max-w-[280px]"
+              className="absolute -bottom-4 right-4 sm:-bottom-8 sm:-right-8 z-20 bg-blue-600 text-white p-6 sm:p-8 rounded-3xl shadow-xl max-w-[220px] sm:max-w-[280px]"
             >
               <p className="text-4xl font-black mb-2 tracking-tight">100%</p>
               <p className="text-blue-100 font-medium leading-tight lowercase">
@@ -57,16 +57,16 @@ export const About = () => {
 
           <motion.div
             initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
             <span className="inline-block px-4 py-1 text-sm font-bold tracking-widest text-blue-600 uppercase bg-blue-50 rounded-full mb-6">
               Sobre Galpón Austral
             </span>
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-8 leading-tight">
               Ingeniería en Acero que <span className="text-blue-600">Impulsa</span> su Industria
             </h2>
-            <div className="space-y-6 text-lg text-slate-600 font-light leading-relaxed">
+            <div className="space-y-6 text-base sm:text-lg text-slate-600 font-light leading-relaxed">
               <p>
                 Fundada con la visión de transformar el panorama industrial del sur de Chile,
                 <span className="font-bold text-slate-900"> Galpón Austral</span> se ha consolidado como el referente en soluciones metálicas de alta complejidad.
@@ -76,11 +76,11 @@ export const About = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-8 mt-12">
+            <div className="grid grid-cols-2 gap-4 sm:gap-8 mt-12">
               {stats.map((stat, index) => (
-                <div key={index} className="border-l-4 border-blue-600 pl-6 py-2">
-                  <p className="text-3xl font-black text-slate-900 mb-1">{stat.value}</p>
-                  <p className="text-sm text-slate-500 font-medium uppercase tracking-wider">
+                <div key={index} className="border-l-4 border-blue-600 pl-4 sm:pl-6 py-2">
+                  <p className="text-2xl sm:text-3xl font-black text-slate-900 mb-1">{stat.value}</p>
+                  <p className="text-[10px] sm:text-sm text-slate-500 font-medium uppercase tracking-wider leading-tight">
                     {stat.label}
                   </p>
                 </div>

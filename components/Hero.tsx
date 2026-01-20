@@ -70,7 +70,7 @@ export const Hero = () => {
         </div>
       </div>
 
-      <Container className="relative z-20">
+      <Container className="relative z-20 pt-40 md:pt-48">
         <div className="max-w-4xl text-white">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -78,7 +78,7 @@ export const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-6"
           >
-            <span className="inline-block px-4 py-2 rounded-full bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 text-blue-200 text-sm font-medium">
+            <span className="inline-block px-4 py-2 rounded-full bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 text-blue-200 text-xs sm:text-sm font-medium">
               ✨ Líderes en Infraestructura Industrial en Chile
             </span>
           </motion.div>
@@ -87,11 +87,11 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-8 leading-tight tracking-tight"
+            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-8 leading-[1.2] tracking-tight overflow-visible"
           >
-            Soluciones en Acero que <br />
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent italic">
-              Desafían el Tiempo.
+            Ingeniería en Acero <br className="hidden sm:block" />
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent italic pl-1 pr-24 py-4 -mr-20 inline-block leading-normal tracking-normal overflow-visible transform translate-x-1">
+              para el Sur de Chile.
             </span>
           </motion.h1>
 
@@ -134,7 +134,7 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
-            className="mt-16 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-3 gap-8"
+            className="mt-16 pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
           >
             <div>
               <p className="text-3xl font-bold text-blue-400">15+</p>

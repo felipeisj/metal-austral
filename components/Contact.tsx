@@ -102,7 +102,7 @@ export const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-slate-500 font-bold uppercase tracking-widest mb-1">Email Corporativo</p>
-                  <p className="text-xl font-bold">proyectos@metalaustral.cl</p>
+                  <p className="text-xl font-bold">proyectos@galponaustral.cl</p>
                 </div>
               </div>
 

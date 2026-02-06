@@ -10,10 +10,10 @@ export const About = () => {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   const stats = [
-    { label: 'Años de Experiencia', value: '15+' },
+    { label: 'Años de Experiencia', value: '20+' },
     { label: 'Proyectos Entregados', value: '500+' },
-    { label: 'Regiones Cubiertas', value: '4' },
-    { label: 'Expertos Técnicos', value: '45' },
+    { label: 'Cobertura Regional', value: 'Temuco a Coyhaique' },
+    { label: 'Desde', value: '2005' },
   ];
 
   return (
@@ -46,7 +46,7 @@ export const About = () => {
             >
               <p className="text-4xl font-black mb-2 tracking-tight">100%</p>
               <p className="text-blue-100 font-medium leading-tight lowercase">
-                compromiso con la seguridad y calidad estructural chilena.
+                compromiso con la seguridad, calidad y cumplimiento de plazos.
               </p>
             </motion.div>
 
@@ -61,18 +61,20 @@ export const About = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
             <span className="inline-block px-4 py-1 text-sm font-bold tracking-widest text-blue-600 uppercase bg-blue-50 rounded-full mb-6">
-              Sobre Galpón Austral
+              Sobre Metal Austral
             </span>
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-8 leading-tight">
-              Ingeniería en Acero que <span className="text-blue-600">Impulsa</span> su Industria
+              Más de <span className="text-blue-600">20 Años</span> Construyendo Confianza
             </h2>
             <div className="space-y-6 text-base sm:text-lg text-slate-600 font-light leading-relaxed">
               <p>
-                Fundada con la visión de transformar el panorama industrial del sur de Chile,
-                <span className="font-bold text-slate-900"> Galpón Austral</span> se ha consolidado como el referente en soluciones metálicas de alta complejidad.
+                En <span className="font-bold text-slate-900">Metal Austral SpA</span> contamos con más de 20 años de experiencia en estructuras metálicas, destacando por nuestra seriedad, calidad y cumplimiento.
               </p>
               <p>
-                No solo vendemos estructuras; entregamos confianza. Cada perno, cada viga y cada plano pasa por un riguroso control de calidad que supera los estándares nacionales. Nuestra misión es que su inversión sea eterna.
+                Desde 2005 en Puerto Montt, somos liderados por <span className="font-medium text-slate-800">Eduardo Pérez Barra</span>, Gerente General, y <span className="font-medium text-slate-800">Eduardo Pérez Mejías</span>, Ingeniero en Construcción y Encargado de Proyectos.
+              </p>
+              <p>
+                Con un equipo calificado, desarrollamos proyectos industriales, comerciales y pesqueros desde Temuco hasta Coyhaique, entregando soluciones a medida, respaldo técnico y la tranquilidad de un trabajo bien hecho.
               </p>
             </div>
 
@@ -86,20 +88,46 @@ export const About = () => {
                 </div>
               ))}
             </div>
+          </motion.div>
+        </div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ delay: 1 }}
-              className="mt-12"
-            >
-              <button className="flex items-center space-x-3 text-slate-900 font-bold hover:text-blue-600 transition-colors group">
-                <span className="text-lg">Conocer nuestra historia completa</span>
-                <svg className="w-5 h-5 transition-transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </button>
-            </motion.div>
+        {/* Mission & Vision Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-24">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-gradient-to-br from-blue-600 to-indigo-700 p-10 rounded-[2rem] text-white"
+          >
+            <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Nuestra Misión</h3>
+            <p className="text-blue-100 leading-relaxed">
+              Entregar soluciones estructurales metálicas de alta calidad, adaptadas a las necesidades específicas de cada cliente, respaldadas por un equipo técnico calificado y un firme compromiso con la seguridad, eficiencia y cumplimiento de plazos.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-slate-900 p-10 rounded-[2rem] text-white"
+          >
+            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-6">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Nuestra Visión</h3>
+            <p className="text-slate-300 leading-relaxed">
+              Ser la empresa líder en soluciones estructurales metálicas del sur de Chile, destacándonos desde Temuco hasta Coyhaique por nuestra seriedad, calidad técnica e innovación continua. Aspiramos a ser el aliado preferido de industrias, comercios y proyectos pesqueros.
+            </p>
           </motion.div>
         </div>
       </Container>

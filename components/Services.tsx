@@ -2,19 +2,17 @@
 
 import { useState, useRef } from 'react';
 import { Container } from './ui/Container';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
 interface Service {
   id: number;
   title: string;
+  shortTitle: string;
   description: string;
-  longDescription?: string;
   icon: string;
   features: string[];
-  image?: string;
-  color: string;
-  gradient: string;
+  image: string;
 }
 
 export const Services = () => {
@@ -25,58 +23,108 @@ export const Services = () => {
   const services: Service[] = [
     {
       id: 1,
-      title: 'Galpones Industriales',
-      description: 'Construcción de galpones industriales de alto rendimiento con ingeniería de vanguardia.',
-      longDescription: 'Diseñamos y construimos espacios que maximizan la eficiencia operativa. Utilizamos las mejores aleaciones de acero y técnicas de montaje rápido para minimizar tiempos de entrega sin comprometer la integridad estructural.',
+      title: 'Galpones y Naves Industriales',
+      shortTitle: 'Galpones',
+      description: 'Para almacenamiento, logística o procesos productivos. Estructuras de acero de alta resistencia con aislación térmica y acústica superior.',
       icon: 'M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21',
       features: [
-        'Estructuras de acero de alta resistencia (ASTM A36/A572)',
-        'Techos con aislación térmica y acústica superior',
-        'Cálculo estructural sismorresistente bajo norma NCh',
-        'Pisos industriales de alta capacidad de carga'
+        'Cálculo estructural sismorresistente NCh',
+        'Techos con aislación térmica superior',
+        'Pisos industriales de alta carga',
+        'Tiempos de entrega optimizados'
       ],
-      image: '/images/proyecto_3.jpeg',
-      color: 'blue',
-      gradient: 'from-blue-600 to-indigo-600'
+      image: '/images/proyecto_3.jpeg'
     },
     {
       id: 2,
-      title: 'Proyectos Llave en Mano',
-      description: 'Gestión total: desde la idea inicial hasta la entrega de llaves.',
-      longDescription: 'Nos encargamos de todo el ciclo de vida del proyecto. Desde la arquitectura básica, especialidades, obtención de permisos municipales hasta la construcción y recepción final.',
-      icon: 'M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z',
+      title: 'Pasillos Pesqueros y Cabezales',
+      shortTitle: 'Pesquero',
+      description: 'Diseñados especialmente para el sector acuícola. Estructuras resistentes a ambientes marinos con materiales anticorrosivos.',
+      icon: 'M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25',
       features: [
-        'Planificación estratégica y cronograma estricto',
-        'Tramitación completa de permisos y recepciones',
-        'Integración de especialidades (Eléctrica, Clima, Sanitaria)',
-        'Garantía de cumplimiento de presupuesto'
+        'Resistencia a ambientes salinos',
+        'Galvanizado en caliente',
+        'Cabezales estructurales reforzados',
+        'Cumplimiento normativo pesquero'
       ],
-      image: '/images/galpones-industriales.jpeg',
-      color: 'emerald',
-      gradient: 'from-emerald-600 to-teal-600'
+      image: '/images/galpones-industriales.jpeg'
     },
     {
       id: 3,
-      title: 'Mantenimiento y Ampliaciones',
-      description: 'Extendemos la vida útil y capacidad de su infraestructura actual.',
-      longDescription: 'Realizamos auditorías estructurales para detectar fatiga o necesidad de refuerzo. Ampliamos galpones existentes manteniendo la continuidad operativa de su empresa.',
-      icon: 'M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z',
+      title: 'Escaleras, Altillos y Entrepisos',
+      shortTitle: 'Altillos',
+      description: 'Optimizan espacios verticales cumpliendo todas las normas de seguridad. Diseños personalizados según requerimientos específicos.',
+      icon: 'M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0l-3.75-3.75M17.25 21l3.75-3.75',
       features: [
-        'Reforzamiento estructural para nuevas cargas',
-        'Cambio de cubiertas y revestimientos',
-        'Limpieza y pintura industrial (Sandblasting)',
-        'Modernización de sistemas de drenaje y ventilación'
+        'Optimización de espacios',
+        'Normas de seguridad vigentes',
+        'Diseños personalizados',
+        'Instalación profesional'
       ],
-      image: '/images/proyecto_4_2.jpeg',
-      color: 'purple',
-      gradient: 'from-fuchsia-600 to-purple-600'
+      image: '/images/proyecto11.jpeg'
+    },
+    {
+      id: 4,
+      title: 'Oficinas Modulares en Isopanel',
+      shortTitle: 'Oficinas',
+      description: 'Confort y aislamiento en zonas industriales. Soluciones rápidas de instalar con excelente aislación térmica y acústica.',
+      icon: 'M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z',
+      features: [
+        'Aislación térmica y acústica',
+        'Montaje rápido',
+        'Diseño modular flexible',
+        'Ideal para faenas'
+      ],
+      image: '/images/proyecto_4_1.jpeg'
+    },
+    {
+      id: 5,
+      title: 'Losas Colaborantes y Radieres',
+      shortTitle: 'Radieres',
+      description: 'Pisos estructurales resistentes para alto tránsito y cargas pesadas. Terminaciones de alta calidad para uso industrial.',
+      icon: 'M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122',
+      features: [
+        'Alta capacidad de carga',
+        'Resistencia a tránsito pesado',
+        'Terminaciones industriales',
+        'Durabilidad garantizada'
+      ],
+      image: '/images/proyecto_4_2.jpeg'
+    },
+    {
+      id: 6,
+      title: 'Cubiertas y Terminaciones',
+      shortTitle: 'Cubiertas',
+      description: 'Cubiertas en planchas zinc que protegen y prolongan la vida útil de las construcciones. Instalación profesional garantizada.',
+      icon: 'M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25',
+      features: [
+        'Planchas zinc de calidad',
+        'Protección contra elementos',
+        'Instalación certificada',
+        'Garantía extendida'
+      ],
+      image: '/images/proyecto22.jpeg'
+    },
+    {
+      id: 7,
+      title: 'Estanques y Estructuras Especiales',
+      shortTitle: 'Especiales',
+      description: 'Fabricaciones personalizadas según cada proyecto. Soluciones a medida para requerimientos únicos.',
+      icon: 'M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z',
+      features: [
+        'Diseño personalizado',
+        'Fabricación a medida',
+        'Ingeniería especializada',
+        'Proyectos únicos'
+      ],
+      image: '/images/proyecto_3.jpeg'
     }
   ];
 
   const activeServiceData = services.find(s => s.id === activeService);
 
   return (
-    <section ref={sectionRef} id="servicios" className="py-32 bg-slate-50 relative overflow-hidden">
+    <section ref={sectionRef} id="servicios" className="py-24 bg-slate-50 relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
         <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-blue-200 rounded-full blur-[120px]" />
@@ -88,120 +136,117 @@ export const Services = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <span className="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-widest text-blue-600 uppercase bg-blue-50 rounded-full">
-            Nuestra Expertise
+            Nuestros Servicios
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-8 tracking-tight">
-            Especialistas en <span className="text-blue-600">Construcción Industrial</span>
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
+            Soluciones <span className="text-blue-600">Estructurales Metálicas</span>
           </h2>
-          <p className="max-w-3xl mx-auto text-lg md:text-xl text-slate-600 leading-relaxed font-light">
-            No solo levantamos estructuras; diseñamos los pilares donde su empresa crecerá.
-            Calidad certificada y compromiso absoluto con sus plazos.
+          <p className="max-w-3xl mx-auto text-lg text-slate-600 leading-relaxed font-light">
+            A medida para la industria, el comercio y el sector pesquero del sur de Chile.
           </p>
         </motion.div>
 
-        {/* Cards de servicios - Grid más moderno */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              onClick={() => setActiveService(service.id)}
-              className={`group relative p-10 rounded-[2.5rem] transition-all duration-500 cursor-pointer overflow-hidden ${activeService === service.id
-                ? `bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] scale-[1.02] border-t-4 border-blue-600`
-                : 'bg-white/50 hover:bg-white border border-slate-100 hover:shadow-xl'
-                }`}
-            >
-              <div className="relative z-10">
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-all duration-300 ${activeService === service.id
-                  ? `bg-blue-600 text-white`
-                  : `bg-slate-100 text-slate-600 group-hover:bg-blue-50 group-hover:text-blue-600`
-                  }`}>
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={service.icon} />
-                  </svg>
-                </div>
-
-                <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">{service.title}</h3>
-                <p className="text-slate-600 leading-relaxed mb-6 font-light">
-                  {service.description}
-                </p>
-
-                <div className={`flex items-center text-sm font-bold uppercase tracking-wider transition-all duration-300 ${activeService === service.id ? 'text-blue-600' : 'text-slate-400 group-hover:text-blue-500'
-                  }`}>
-                  <span>Ver Especificaciones</span>
-                  <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Sección de detalles expansiva */}
-        {activeServiceData && (
-          <motion.div
-            layoutId="activeServiceCard"
-            className="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-slate-100"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="p-12 md:p-16">
-                <motion.div
+        {/* Layout: Services Tabs + Detail */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Service Tabs - Vertical on desktop */}
+          <div className="lg:col-span-4">
+            <div className="flex flex-wrap gap-2 lg:flex-col lg:gap-3">
+              {services.map((service, index) => (
+                <motion.button
+                  key={service.id}
                   initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  key={`content-${activeService}`}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  onClick={() => setActiveService(service.id)}
+                  className={`flex items-center gap-3 px-5 py-4 rounded-2xl text-left transition-all duration-300 ${activeService === service.id
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-200'
+                      : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-100'
+                    }`}
                 >
-                  <h3 className="text-3xl md:text-4xl font-black text-slate-900 mb-6 tracking-tight flex items-center">
-                    <span className={`w-12 h-1 bg-blue-600 mr-4 rounded-full`} />
-                    {activeServiceData.title}
-                  </h3>
-                  <p className="text-xl text-slate-600 mb-10 leading-relaxed font-light">
-                    {activeServiceData.longDescription}
-                  </p>
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${activeService === service.id ? 'bg-white/20' : 'bg-slate-100'
+                    }`}>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={service.icon} />
+                    </svg>
+                  </div>
+                  <span className="font-bold text-sm lg:text-base">{service.shortTitle}</span>
+                </motion.button>
+              ))}
+            </div>
+          </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-                    {activeServiceData.features.map((feature, index) => (
-                      <div key={index} className="flex items-start space-x-3">
-                        <div className="mt-1 flex-shrink-0 w-5 h-5 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center">
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                          </svg>
-                        </div>
-                        <span className="text-slate-700 font-medium">{feature}</span>
-                      </div>
-                    ))}
+          {/* Active Service Detail */}
+          <div className="lg:col-span-8">
+            <AnimatePresence mode="wait">
+              {activeServiceData && (
+                <motion.div
+                  key={activeService}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white rounded-[2rem] shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden"
+                >
+                  {/* Image Section */}
+                  <div className="relative h-48 md:h-64 w-full">
+                    <Image
+                      src={activeServiceData.image}
+                      alt={activeServiceData.title}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
                   </div>
 
-                  <button className="px-10 py-5 bg-slate-900 text-white font-bold rounded-2xl hover:bg-blue-600 transition-colors shadow-lg shadow-slate-200">
-                    Solicitar Cotización Técnica
-                  </button>
-                </motion.div>
-              </div>
+                  {/* Content Section */}
+                  <div className="p-8 lg:p-10 -mt-12 relative">
+                    <div className="flex items-start gap-4 mb-6">
+                      <div className="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={activeServiceData.icon} />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-2xl lg:text-3xl font-black text-slate-900 mb-2">
+                          {activeServiceData.title}
+                        </h3>
+                        <p className="text-slate-600 leading-relaxed">
+                          {activeServiceData.description}
+                        </p>
+                      </div>
+                    </div>
 
-              <div className="relative min-h-[400px] lg:min-h-full overflow-hidden">
-                <motion.div
-                  initial={{ opacity: 0, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  key={`image-${activeService}`}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={activeServiceData.image || ''}
-                    alt={activeServiceData.title}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-r ${activeServiceData.gradient} opacity-20`} />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                      {activeServiceData.features.map((feature, index) => (
+                        <div key={index} className="flex items-center gap-3 bg-slate-50 rounded-xl px-4 py-3">
+                          <div className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <span className="text-slate-700 font-medium text-sm">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <a
+                      href="#contacto"
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-blue-600 transition-colors"
+                    >
+                      Solicitar Cotización
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </a>
+                  </div>
                 </motion.div>
-              </div>
-            </div>
-          </motion.div>
-        )}
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
       </Container>
     </section>
   );

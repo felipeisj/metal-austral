@@ -102,7 +102,7 @@ export const Hero = () => {
             className="text-xl md:text-2xl mb-10 text-gray-200 leading-relaxed max-w-2xl font-light"
           >
             Desde el diseño conceptual hasta la entrega final. En
-            <span className="text-white font-bold"> Galpón Austral</span>,
+            <span className="text-white font-bold"> Metal Austral</span>,
             convertimos visiones industriales en realidades estructurales con
             <span className="text-blue-300"> precisión quirúrgica</span> y eficiencia.
           </motion.p>
@@ -128,27 +128,6 @@ export const Hero = () => {
               <span className="relative z-10 text-lg">Cotizar Proyecto</span>
             </Link>
           </motion.div>
-
-          {/* Stats rápidos en Hero */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            className="mt-16 pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
-          >
-            <div>
-              <p className="text-3xl font-bold text-blue-400">15+</p>
-              <p className="text-sm text-gray-400 uppercase tracking-widest">Años de Exp.</p>
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-blue-400">500+</p>
-              <p className="text-sm text-gray-400 uppercase tracking-widest">Obras Listas</p>
-            </div>
-            <div className="hidden md:block">
-              <p className="text-3xl font-bold text-blue-400">100%</p>
-              <p className="text-sm text-gray-400 uppercase tracking-widest">Compromiso</p>
-            </div>
-          </motion.div>
         </div>
       </Container>
 
@@ -157,7 +136,7 @@ export const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50"
       >
         <div className="flex flex-col items-center text-white/50">
           <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center">

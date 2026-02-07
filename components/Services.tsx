@@ -162,8 +162,8 @@ export const Services = () => {
                   transition={{ duration: 0.4, delay: index * 0.05 }}
                   onClick={() => setActiveService(service.id)}
                   className={`flex items-center gap-3 px-5 py-4 rounded-2xl text-left transition-all duration-300 ${activeService === service.id
-                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-200'
-                      : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-100'
+                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-200'
+                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-100'
                     }`}
                 >
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${activeService === service.id ? 'bg-white/20' : 'bg-slate-100'
@@ -196,6 +196,7 @@ export const Services = () => {
                       src={activeServiceData.image}
                       alt={activeServiceData.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 66vw"
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />

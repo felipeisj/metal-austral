@@ -9,6 +9,17 @@ if (!supabaseUrl || !supabaseAnonKey) {
   }
 }
 
+// Helper to create chainable mock methods
+const createChainableMock = () => {
+  const mock: any = {
+    select: () => mock,
+    eq: () => mock,
+    order: () => Promise.resolve({ data: [], error: null }),
+    then: (resolve: any) => resolve({ data: [], error: null }),
+  }
+  return mock
+}
+
 export const supabase = (supabaseUrl && supabaseAnonKey)
   ? createClient(supabaseUrl, supabaseAnonKey)
   : {
@@ -19,29 +30,5 @@ export const supabase = (supabaseUrl && supabaseAnonKey)
       signOut: async () => ({ error: null }),
       signInWithPassword: async () => ({ data: { user: null, session: null }, error: new Error('Supabase not configured') }),
     },
-    from: () => ({
-      select: () => ({
-        order: () => Promise.resolve({ data: [], error: null }),
-        eq: () => ({
-          order: () => Promise.resolve({ data: [], error: null }),
-          eq: () => Promise.resolve({ data: [], error: null }),
-          select: () => Promise.resolve({ data: [], error: null }),
-        }),
-      }),
-      insert: () => ({
-        select: () => Promise.resolve({ data: null, error: new Error('Supabase not configured') }),
-      }),
-      update: () => ({
-        eq: () => ({
-          eq: () => ({
-            select: () => Promise.resolve({ data: null, error: new Error('Supabase not configured') }),
-          }),
-        }),
-      }),
-      delete: () => ({
-        eq: () => ({
-          eq: () => Promise.resolve({ data: null, error: new Error('Supabase not configured') }),
-        }),
-      }),
-    })
+    from: () => createChainableMock()
   } as any

@@ -136,17 +136,18 @@ export const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50"
+        className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-50"
       >
-        <div className="flex flex-col items-center text-white/50">
-          <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center">
+        <a href="#nosotros" className="flex flex-col items-center text-white/60 hover:text-white/90 transition-colors cursor-pointer">
+          <span className="text-xs font-medium tracking-widest uppercase mb-3">Scroll</span>
+          <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center">
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               className="w-1 h-2 bg-blue-400 rounded-full mt-2"
             />
           </div>
-        </div>
+        </a>
       </motion.div>
     </section>
   );

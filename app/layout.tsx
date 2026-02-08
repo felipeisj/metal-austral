@@ -6,7 +6,7 @@ import LayoutWrapper from '@/components/LayoutWrapper';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Galpón Austral | Construcción de Galpones Industriales',
+  title: 'Metal Austral | Construcción de Galpones Industriales',
   description: 'Empresa líder en construcción de galpones industriales con más de 15 años de experiencia.',
   keywords: 'galpones industriales, construcción, metal, acero, estructuras metálicas',
 };

@@ -122,7 +122,7 @@ export const Footer = () => {
 
         <div className="pt-12 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-slate-500 text-sm">
-            &copy; {currentYear} Galpón Austral SpA. Orgullosamente construido en Puerto Montt.
+            &copy; {currentYear} Metal Austral SpA. Orgullosamente construido en Puerto Montt.
           </p>
           <div className="flex space-x-8">
             <Link href="#" className="text-slate-500 hover:text-white text-xs uppercase tracking-widest font-bold">Privacidad</Link>

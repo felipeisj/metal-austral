@@ -207,10 +207,11 @@ export const Contact = () => {
                     onChange={handleChange}
                     className="w-full bg-slate-50 border-none rounded-2xl py-4 px-6 text-slate-900 focus:ring-2 focus:ring-blue-600 transition-all font-medium appearance-none"
                   >
-                    <option value="industrial">Galpón Industrial</option>
-                    <option value="commercial">Local Comercial</option>
-                    <option value="logistics">Centro Logístico</option>
-                    <option value="other">Estructura Especial</option>
+                    <option value="industrial">Galpones</option>
+                    <option value="commercial">Radieres</option>
+                    <option value="logistics">Oficinas</option>
+                    <option value="logistics">Cubiertas</option>
+                    <option value="other">Otro tipo de proyecto</option>
                   </select>
                 </div>
               </div>

@@ -20,7 +20,6 @@ export default function ClientForm({ client, onSuccess, onCancel }: ClientFormPr
   const [formData, setFormData] = useState({
     name: client?.name || '',
     description: client?.description || '',
-    year: client?.year || '',
     order: client?.order || 0,
     logo: client?.logo || ''
   })
@@ -54,7 +53,6 @@ export default function ClientForm({ client, onSuccess, onCancel }: ClientFormPr
       const clientData = {
         name: formData.name,
         description: formData.description,
-        year: formData.year,
         order: formData.order,
         logo: formData.logo || undefined
       }
@@ -92,7 +90,7 @@ export default function ClientForm({ client, onSuccess, onCancel }: ClientFormPr
         <div className="p-8">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-2xl font-black text-slate-900">
-              {client ? 'Editar Cliente' : 'Nuevo Cliente'}
+              {client ? 'Editar Proveedor' : 'Nuevo Proveedor'}
             </h2>
             <button
               onClick={onCancel}
@@ -153,25 +151,11 @@ export default function ClientForm({ client, onSuccess, onCancel }: ClientFormPr
               />
             </div>
 
-            {/* Year */}
-            <div>
-              <label className="block text-sm font-bold text-slate-700 mb-2">
-                Año del Proyecto *
-              </label>
-              <input
-                type="text"
-                required
-                value={formData.year}
-                onChange={(e) => setFormData({ ...formData, year: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all text-slate-900"
-                placeholder="Ej: 2024 - 2025"
-              />
-            </div>
 
             {/* Description */}
             <div>
               <label className="block text-sm font-bold text-slate-700 mb-2">
-                Descripción del Proyecto *
+                Descripción del Proveedor *
               </label>
               <textarea
                 required

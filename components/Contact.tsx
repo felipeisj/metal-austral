@@ -25,6 +25,13 @@ export const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText('contacto@metalaustral.cl');
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2000);
+  };
 
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
@@ -39,17 +46,27 @@ export const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        projectType: 'industrial',
-        message: '',
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          projectType: 'industrial',
+          message: '',
+        });
+        setTimeout(() => setSubmitStatus('idle'), 6000);
+      } else {
+        setSubmitStatus('error');
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      }
     } catch (error) {
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
@@ -89,8 +106,8 @@ export const Contact = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm text-slate-500 font-bold uppercase tracking-widest mb-1">Central Telefónica</p>
-                  <p className="text-xl font-bold">+56 9 8234 5678</p>
+                  <p className="text-sm text-slate-500 font-bold uppercase tracking-widest mb-1">Teléfono</p>
+                  <a href="tel:+56998837421" className="text-xl font-bold hover:text-blue-400 transition-colors">+56 9 9883 7421</a>
                 </div>
               </div>
 
@@ -102,7 +119,21 @@ export const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-slate-500 font-bold uppercase tracking-widest mb-1">Email Corporativo</p>
-                  <p className="text-xl font-bold">proyectos@galponaustral.cl</p>
+                  <button
+                    onClick={copyEmail}
+                    className="text-xl font-bold hover:text-blue-400 transition-colors text-left flex items-center gap-2 group/email"
+                  >
+                    {emailCopied ? (
+                      <span className="text-emerald-400 flex items-center gap-2">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        ¡Copiado!
+                      </span>
+                    ) : (
+                      <>contacto@metalaustral.cl</>
+                    )}
+                  </button>
                 </div>
               </div>
 
@@ -208,7 +239,13 @@ export const Contact = () => {
 
               {submitStatus === 'success' && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-4 bg-emerald-50 text-emerald-700 rounded-xl text-center text-sm font-bold">
-                  ✓ Mensaje enviado. Nos contactaremos a la brevedad.
+                  ✓ Mensaje enviado exitosamente. Nos contactaremos a la brevedad.
+                </motion.div>
+              )}
+
+              {submitStatus === 'error' && (
+                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-4 bg-red-50 text-red-700 rounded-xl text-center text-sm font-bold">
+                  ✗ Error al enviar el mensaje. Por favor intenta de nuevo o contáctanos directamente.
                 </motion.div>
               )}
             </form>

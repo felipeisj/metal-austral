@@ -170,6 +170,8 @@ export default function ProjectForm({ project, onSuccess, onCancel }: ProjectFor
                 >
                   <option value="galpones">Galpones</option>
                   <option value="radieres">Radieres</option>
+                  <option value="oficinas">Oficinas Modulares</option>
+                  <option value="cubiertas">Cubiertas</option>
                   <option value="otros">Otros</option>
                 </select>
               </div>

@@ -37,34 +37,6 @@ export const Services = () => {
     },
     {
       id: 2,
-      title: 'Pasillos Pesqueros y Cabezales',
-      shortTitle: 'Pesquero',
-      description: 'Diseñados especialmente para el sector acuícola. Estructuras resistentes a ambientes marinos con materiales anticorrosivos.',
-      icon: 'M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25',
-      features: [
-        'Resistencia a ambientes salinos',
-        'Galvanizado en caliente',
-        'Cabezales estructurales reforzados',
-        'Cumplimiento normativo pesquero'
-      ],
-      image: '/images/galpones-industriales.jpeg'
-    },
-    {
-      id: 3,
-      title: 'Escaleras, Altillos y Entrepisos',
-      shortTitle: 'Altillos',
-      description: 'Optimizan espacios verticales cumpliendo todas las normas de seguridad. Diseños personalizados según requerimientos específicos.',
-      icon: 'M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0l-3.75-3.75M17.25 21l3.75-3.75',
-      features: [
-        'Optimización de espacios',
-        'Normas de seguridad vigentes',
-        'Diseños personalizados',
-        'Instalación profesional'
-      ],
-      image: '/images/proyecto11.jpeg'
-    },
-    {
-      id: 4,
       title: 'Oficinas Modulares en Isopanel',
       shortTitle: 'Oficinas',
       description: 'Confort y aislamiento en zonas industriales. Soluciones rápidas de instalar con excelente aislación térmica y acústica.',
@@ -78,7 +50,7 @@ export const Services = () => {
       image: '/images/proyecto_4_1.jpeg'
     },
     {
-      id: 5,
+      id: 3,
       title: 'Losas Colaborantes y Radieres',
       shortTitle: 'Radieres',
       description: 'Pisos estructurales resistentes para alto tránsito y cargas pesadas. Terminaciones de alta calidad para uso industrial.',
@@ -92,7 +64,7 @@ export const Services = () => {
       image: '/images/proyecto_4_2.jpeg'
     },
     {
-      id: 6,
+      id: 4,
       title: 'Cubiertas y Terminaciones',
       shortTitle: 'Cubiertas',
       description: 'Cubiertas en planchas zinc que protegen y prolongan la vida útil de las construcciones. Instalación profesional garantizada.',
@@ -106,7 +78,7 @@ export const Services = () => {
       image: '/images/proyecto22.jpeg'
     },
     {
-      id: 7,
+      id: 5,
       title: 'Estanques y Estructuras Especiales',
       shortTitle: 'Especiales',
       description: 'Fabricaciones personalizadas según cada proyecto. Soluciones a medida para requerimientos únicos.',

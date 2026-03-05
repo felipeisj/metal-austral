@@ -13,43 +13,36 @@ const fallbackClients: Omit<Client, 'id' | 'company_id' | 'created_at' | 'update
   {
     name: 'Zerocorp SpA',
     description: 'Fabricación y montaje de planta de tratamiento de lixiviados en Maullín',
-    year: '2024 - 2025',
     order: 1
   },
   {
     name: 'Gallega S.A.',
     description: 'Fabricación y montaje de galpón metálico de 500 m²',
-    year: '2022',
     order: 2
   },
   {
     name: 'Copec',
     description: 'Fabricación y montaje de galpón metálico de 450 m²',
-    year: '2021',
     order: 3
   },
   {
     name: 'Cruz del Sur',
     description: 'Fabricación y montaje de techumbre',
-    year: '2020',
     order: 4
   },
   {
     name: 'Walbusch S.A.',
     description: 'Pasillos pesqueros y fabricación de cabezales',
-    year: '2017',
     order: 5
   },
   {
     name: 'Ingered',
     description: 'Fabricación y montaje de planta de tratamiento de redes',
-    year: '2012',
     order: 6
   },
   {
     name: 'Oxxean',
     description: 'Pasillos pesqueros',
-    year: '2009',
     order: 7
   }
 ];
@@ -113,14 +106,11 @@ export const Clients = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-widest text-blue-600 uppercase bg-blue-50 rounded-full">
-            Clientes Destacados
-          </span>
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
             Empresas que <span className="text-blue-600">Confían</span> en Nosotros
           </h2>
           <p className="max-w-3xl mx-auto text-lg text-slate-600 leading-relaxed font-light">
-            Empresas que han confiado en Metal Austral SpA para el desarrollo de sus proyectos industriales y pesqueros.
+            Trabajamos únicamente con proveedores certificados y de confianza, garantizando que cada proyecto sea construido con materiales de alta calidad, durabilidad y resistencia al clima del sur de Chile.
           </p>
         </motion.div>
       </Container>
@@ -164,7 +154,6 @@ export const Clients = () => {
                   )}
                   <div>
                     <h3 className="text-base font-bold text-slate-900 leading-tight">{client.name}</h3>
-                    <p className="text-sm text-blue-600 font-medium">{client.year}</p>
                   </div>
                 </div>
                 <p className="text-slate-600 leading-relaxed text-sm line-clamp-3">

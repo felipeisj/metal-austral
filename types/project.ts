@@ -1,4 +1,4 @@
-export type ProjectCategory = 'galpones' | 'radieres' | 'otros';
+export type ProjectCategory = 'galpones' | 'radieres' | 'oficinas' | 'cubiertas' | 'otros';
 export type ProjectStatus = 'Publicado' | 'Borrador';
 
 export interface Project {
@@ -22,11 +22,15 @@ export interface Project {
 export const categoryLabels: Record<ProjectCategory, string> = {
   galpones: 'Galpones',
   radieres: 'Radieres',
+  oficinas: 'Oficinas Modulares',
+  cubiertas: 'Cubiertas',
   otros: 'Otros',
 };
 
 export const categoryIcons: Record<ProjectCategory, string> = {
   galpones: '🏭',
   radieres: '🏗️',
+  oficinas: '🏢',
+  cubiertas: '🏠',
   otros: '📦',
 };

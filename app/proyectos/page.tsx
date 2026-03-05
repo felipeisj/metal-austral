@@ -12,7 +12,16 @@ import { getCloudinaryUrl } from '@/lib/cloudinary-helper';
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeCategory, setActiveCategory] = useState<ProjectCategory | 'todos'>('todos');
+
+  // Read initial category from URL ?categoria=
+  const getInitialCategory = (): ProjectCategory | 'todos' => {
+    if (typeof window === 'undefined') return 'todos';
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('categoria') as ProjectCategory | null;
+    const valid: (ProjectCategory | 'todos')[] = ['todos', 'galpones', 'radieres', 'oficinas', 'cubiertas', 'otros'];
+    return cat && valid.includes(cat) ? cat : 'todos';
+  };
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory | 'todos'>(getInitialCategory);
 
   useEffect(() => {
     async function fetchProjects() {
@@ -38,6 +47,8 @@ export default function ProjectsPage() {
     { id: 'todos' as const, name: 'Todos', icon: '🏗️' },
     { id: 'galpones' as const, name: 'Galpones', icon: '🏭' },
     { id: 'radieres' as const, name: 'Radieres', icon: '🏗️' },
+    { id: 'oficinas' as const, name: 'Oficinas Modulares', icon: '🏢' },
+    { id: 'cubiertas' as const, name: 'Cubiertas', icon: '🏠' },
     { id: 'otros' as const, name: 'Otros', icon: '📦' },
   ];
 

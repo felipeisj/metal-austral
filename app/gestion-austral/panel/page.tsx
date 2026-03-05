@@ -119,8 +119,8 @@ export default function AdminDashboard() {
           <button
             onClick={() => setActiveTab('projects')}
             className={`px-6 py-3 rounded-xl font-bold transition-all ${activeTab === 'projects'
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-200'
-                : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+              ? 'bg-blue-600 text-white shadow-lg shadow-blue-200'
+              : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
               }`}
           >
             📁 Proyectos ({projects.length})
@@ -128,8 +128,8 @@ export default function AdminDashboard() {
           <button
             onClick={() => setActiveTab('clients')}
             className={`px-6 py-3 rounded-xl font-bold transition-all ${activeTab === 'clients'
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-200'
-                : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+              ? 'bg-blue-600 text-white shadow-lg shadow-blue-200'
+              : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
               }`}
           >
             🏢 Clientes ({clients.length})
@@ -238,8 +238,7 @@ export default function AdminDashboard() {
                       </div>
                       <div>
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xs font-bold text-blue-600">{client.year}</span>
-                          <span className="text-xs font-bold text-slate-400">• Orden: {client.order}</span>
+                          <span className="text-xs font-bold text-slate-400">Orden: {client.order}</span>
                         </div>
                         <h4 className="font-black text-slate-900">{client.name}</h4>
                         <p className="text-sm text-slate-500 font-medium line-clamp-1">{client.description}</p>

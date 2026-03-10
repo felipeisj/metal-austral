@@ -8,10 +8,13 @@ import { Container } from '@/components/ui/Container';
 import { supabase } from '@/lib/supabase';
 import { Project, ProjectCategory, categoryLabels } from '@/types/project';
 import { getCloudinaryUrl } from '@/lib/cloudinary-helper';
+import ProjectModal from '@/components/ProjectModal';
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Read initial category from URL ?categoria=
   const getInitialCategory = (): ProjectCategory | 'todos' => {
@@ -51,6 +54,16 @@ export default function ProjectsPage() {
     { id: 'cubiertas' as const, name: 'Cubiertas', icon: '🏠' },
     { id: 'otros' as const, name: 'Otros', icon: '📦' },
   ];
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedProject(null), 300);
+  };
 
   return (
     <main className="pt-24 pb-32 bg-gradient-to-b from-slate-50 to-white min-h-screen">
@@ -117,7 +130,8 @@ export default function ProjectsPage() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group"
+                className="group cursor-pointer block"
+                onClick={() => handleProjectClick(project)}
               >
                 <div className="relative h-[450px] rounded-[2.5rem] overflow-hidden shadow-xl shadow-slate-200/50 mb-6">
                   <Image
@@ -192,6 +206,16 @@ export default function ProjectsPage() {
           </Link>
         </motion.div>
       </Container>
-    </main>
+
+      {
+        selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            isOpen={isModalOpen}
+            onClose={closeModal}
+          />
+        )
+      }
+    </main >
   );
 }
